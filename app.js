@@ -2,9 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = 3000;
+const router = require("./routes/index");
 const db = require("./models/index");
 
-const connec = async () => {
+const testConnection = async () => {
   try {
     await db.sequelize.authenticate();
     console.log("Connection has been established successfully.");
@@ -13,11 +14,9 @@ const connec = async () => {
   }
 };
 
-connec();
+testConnection();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use("/", router);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
