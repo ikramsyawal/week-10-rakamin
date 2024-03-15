@@ -16,6 +16,7 @@ const testConnection = async () => {
 
 testConnection();
 
+app.use(express.json());
 app.use("/", router);
 
 app.listen(port, () => {
